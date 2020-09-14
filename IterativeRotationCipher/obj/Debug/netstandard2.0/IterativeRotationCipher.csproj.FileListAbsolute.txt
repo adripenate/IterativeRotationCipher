@@ -1,0 +1,8 @@
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\bin\Debug\netstandard2.0\IterativeRotationCipher.deps.json
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\bin\Debug\netstandard2.0\IterativeRotationCipher.dll
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\bin\Debug\netstandard2.0\IterativeRotationCipher.pdb
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\obj\Debug\netstandard2.0\IterativeRotationCipher.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\obj\Debug\netstandard2.0\IterativeRotationCipher.AssemblyInfoInputs.cache
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\obj\Debug\netstandard2.0\IterativeRotationCipher.AssemblyInfo.cs
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\obj\Debug\netstandard2.0\IterativeRotationCipher.dll
+C:\Users\adria\Desktop\IterativeRotationCipher\IterativeRotationCipher\obj\Debug\netstandard2.0\IterativeRotationCipher.pdb
