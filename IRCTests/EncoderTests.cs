@@ -22,5 +22,17 @@ namespace IRCTests
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
+
+        [Test]
+        public void shouldIterateOneWordTwoTimes()
+        {
+            var number_rotations = 2;
+            var phrase = "hello";
+            var expectedOutput = "llohe";
+
+            var output = new Encoder().encode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
     }
 }
