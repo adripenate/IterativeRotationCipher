@@ -12,11 +12,11 @@ namespace IRCTests
         }
 
         [Test]
-        public void shouldIterateSingleWordOneTime()
+        public void ShouldIterateOneWordTwoTimes()
         {
-            var number_rotations = 1;
+            var number_rotations = 2;
             var phrase = "hello";
-            var expectedOutput = "lohel";
+            var expectedOutput = "llohe";
 
             var output = new Encoder().encode(phrase, number_rotations);
 
@@ -24,11 +24,11 @@ namespace IRCTests
         }
 
         [Test]
-        public void shouldIterateOneWordTwoTimes()
+        public void ShouldIterateTwoWordsOneTime()
         {
-            var number_rotations = 2;
-            var phrase = "hello";
-            var expectedOutput = "llohe";
+            var number_rotations = 1;
+            var phrase = "hello friend";
+            var expectedOutput = "ldhel nofrie";
 
             var output = new Encoder().encode(phrase, number_rotations);
 
