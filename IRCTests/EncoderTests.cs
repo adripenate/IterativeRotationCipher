@@ -16,7 +16,7 @@ namespace IRCTests
         {
             var number_rotations = 1;
             var phrase = "hello";
-            var expectedOutput = "llohe";
+            var expectedOutput = "lohel";
 
             var output = new Encoder().encode(phrase, number_rotations);
 
