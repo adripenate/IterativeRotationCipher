@@ -6,7 +6,8 @@ namespace IterativeRotationCipher
     {
         public object encode(string phrase, int number_rotations)
         {
-            return "";
+            phrase = phrase.Substring(phrase.Length - 1) + phrase.Substring(0, phrase.Length - 1);
+            return phrase.Substring(phrase.Length - 1) + phrase.Substring(0, phrase.Length - 1);
         }
     }
 }
