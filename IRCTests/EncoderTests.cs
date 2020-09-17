@@ -46,5 +46,17 @@ namespace IRCTests
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
+
+        [Test]
+        public void ShouldIterateWithExtraSpacesAtTheEnd()
+        {
+            var number_rotations = 2;
+            var phrase = "hello friend ";
+            var expectedOutput = "lnfre lodhie ";
+
+            var output = new Encoder().Encode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
     }
 }

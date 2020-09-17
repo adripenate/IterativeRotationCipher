@@ -16,17 +16,26 @@ namespace IterativeRotationCipher
                 string phraseWithoutSpaces = RemoveSpaces(phrase);
                 phraseWithoutSpaces = Rotate(phraseWithoutSpaces, number_rotations);
                 string[] words = SeparateWords(phrase, phraseWithoutSpaces);
-                phrase = RotateEachWordAndBuildPhrase(number_rotations, words);
+                words = RotateWords(number_rotations, words);
+                phrase = BuildPhrase(words);
             }
             return phrase;
         }
 
-        private static string RotateEachWordAndBuildPhrase(int number_rotations, string[] words)
+        private static string[] RotateWords(int number_rotations, string[] words)
+        {
+            for (int position = 0; position < words.Length; position++)
+            {
+                if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
+            }
+            return words;
+        }
+
+        private static string BuildPhrase(string[] words)
         {
             string phrase = "";
             for (int position = 0; position < words.Length; position++)
             {
-                if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
                 phrase += words[position] + " ";
             }
             phrase = phrase.Trim();
