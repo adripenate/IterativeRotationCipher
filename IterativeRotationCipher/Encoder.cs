@@ -5,13 +5,17 @@ namespace IterativeRotationCipher
 {
     public class Encoder
     {
+        private const string SPACE_PATTERN = @"\s+";
+        private const string NO_SPACE = "";
+        private const char SPACE_CHARACTER = ' ';
+
         public object encode(string phrase, int number_rotations)
         {
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
                 string phraseWithoutSpaces = RemoveSpaces(phrase);
                 phraseWithoutSpaces = Rotate(phraseWithoutSpaces, number_rotations);
-                string[] original_words = phrase.Split(' ');
+                string[] original_words = phrase.Split(SPACE_CHARACTER);
                 string[] words = new string[original_words.Length];
                 var separation = 0;
                 phrase = "";
@@ -39,7 +43,7 @@ namespace IterativeRotationCipher
 
         private static string RemoveSpaces(string phrase)
         {
-            return Regex.Replace(phrase, @"\s+", "");
+            return Regex.Replace(phrase, SPACE_PATTERN, NO_SPACE);
         }
 
         private static string Rotate(string phrase, int number_rotations)
