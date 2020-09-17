@@ -17,9 +17,9 @@ namespace IterativeRotationCipher
                 phrase = "";
                 for (int position = 0; position < original_words.Length; position++)
                 {
-                    words[position] = GetWord(phraseWithoutSpaces, original_words[position], separation);
+                    words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), separation);
                     words[position] = Rotate(words[position], number_rotations);
-                    separation += original_words[position].Length;
+                    separation += GetWordLength(original_words, position);
                     phrase += words[position] + " ";
                 }
                 phrase = phrase.Trim();
@@ -27,9 +27,14 @@ namespace IterativeRotationCipher
             return phrase;
         }
 
-        private static string GetWord(string phraseWithoutSpaces, string original_word, int separation)
+        private static int GetWordLength(string[] original_words, int position)
         {
-            return phraseWithoutSpaces.Substring(separation, original_word.Length);
+            return original_words[position].Length;
+        }
+
+        private static string GetWord(string phraseWithoutSpaces, int word_length, int separation)
+        {
+            return phraseWithoutSpaces.Substring(separation, word_length);
         }
 
         private static string RemoveSpaces(string phrase)
