@@ -9,7 +9,7 @@ namespace IterativeRotationCipher
         private const string NO_SPACE = "";
         private const char SPACE_CHARACTER = ' ';
 
-        public object encode(string phrase, int number_rotations)
+        public object Encode(string phrase, int number_rotations)
         {
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
