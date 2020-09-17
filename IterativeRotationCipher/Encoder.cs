@@ -19,12 +19,17 @@ namespace IterativeRotationCipher
                 phrase = "";
                 for (int position = 0; position < words.Length; position++)
                 {
-                    if (words[position].Length > 1) words[position] = Rotate(words[position], number_rotations);
+                    if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
                     phrase += words[position] + " ";
                 }
                 phrase = phrase.Trim();
             }
             return phrase;
+        }
+
+        private static bool HasMoreThanOneLetter(string word)
+        {
+            return word.Length > 1;
         }
 
         private static string[] SeparateWords(string phrase, string phraseWithoutSpaces)
