@@ -15,20 +15,29 @@ namespace IterativeRotationCipher
             {
                 string phraseWithoutSpaces = RemoveSpaces(phrase);
                 phraseWithoutSpaces = Rotate(phraseWithoutSpaces, number_rotations);
-                string[] original_words = phrase.Split(SPACE_CHARACTER);
-                string[] words = new string[original_words.Length];
-                var separation = 0;
+                string[] words = SeparateWords(phrase, phraseWithoutSpaces);
                 phrase = "";
-                for (int position = 0; position < original_words.Length; position++)
+                for (int position = 0; position < words.Length; position++)
                 {
-                    words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), separation);
                     words[position] = Rotate(words[position], number_rotations);
-                    separation += GetWordLength(original_words, position);
                     phrase += words[position] + " ";
                 }
                 phrase = phrase.Trim();
             }
             return phrase;
+        }
+
+        private static string[] SeparateWords(string phrase, string phraseWithoutSpaces)
+        {
+            string[] original_words = phrase.Split(SPACE_CHARACTER);
+            string[] words = new string[original_words.Length];
+            var separation = 0;
+            for (int position = 0; position < original_words.Length; position++)
+            {
+                words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), separation);
+                separation += GetWordLength(original_words, position);
+            }
+            return words;
         }
 
         private static int GetWordLength(string[] original_words, int position)
