@@ -24,44 +24,51 @@ namespace IterativeRotationCipher
 
         private static string[] RotateWords(int number_rotations, string[] words)
         {
-            for (int position = 0; position < words.Length; position++)
+            for (int position = 0; position < GetNumberOfWords(words); position++)
             {
                 if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
             }
             return words;
         }
 
+        private static int GetNumberOfWords(string[] words)
+        {
+            return words.Length;
+        }
+
         private static string BuildPhrase(string[] words)
         {
             string phrase = "";
-            for (int position = 0; position < words.Length-1; position++)
-            {
-                phrase += words[position] + " ";
-            }
-            phrase += words[words.Length - 1];
+            for (int position = 0; position < GetNumberOfWords(words)-1; position++) phrase += words[position] + " ";
+            phrase += words[GetNumberOfWords(words)-1];
             return phrase;
         }
 
         private static bool HasMoreThanOneLetter(string word)
         {
-            return word.Length > 1;
+            return GetLength(word) > 1;
         }
 
         private static string[] SeparateWords(string phrase, string phraseWithoutSpaces)
         {
-            string[] original_words = phrase.Split(SPACE_CHARACTER);
-            string[] words = new string[original_words.Length];
-            for (int position = 0, word_start = 0; position < original_words.Length; position++)
+            string[] original_words = GetOriginalWords(phrase);
+            string[] words = new string[GetNumberOfWords(original_words)];
+            for (int position = 0, word_start = 0; position < GetNumberOfWords(original_words); position++)
             {
-                words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), word_start);
-                word_start += GetWordLength(original_words, position);
+                words[position] = GetWord(phraseWithoutSpaces, GetLength(original_words[position]), word_start);
+                word_start += GetLength(original_words[position]);
             }
             return words;
         }
 
-        private static int GetWordLength(string[] original_words, int position)
+        private static string[] GetOriginalWords(string phrase)
         {
-            return original_words[position].Length;
+            return phrase.Split(SPACE_CHARACTER);
+        }
+
+        private static int GetLength(string word)
+        {
+            return word.Length;
         }
 
         private static string GetWord(string phraseWithoutSpaces, int word_length, int separation)
@@ -81,7 +88,7 @@ namespace IterativeRotationCipher
 
         private static int GetShiftPosition(string phrase, int number_rotations)
         {
-            return phrase.Length - number_rotations;
+            return GetLength(phrase) - number_rotations;
         }
     }
 }
