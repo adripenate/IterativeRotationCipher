@@ -42,11 +42,10 @@ namespace IterativeRotationCipher
         {
             string[] original_words = phrase.Split(SPACE_CHARACTER);
             string[] words = new string[original_words.Length];
-            var separation = 0;
-            for (int position = 0; position < original_words.Length; position++)
+            for (int position = 0, word_start = 0; position < original_words.Length; position++)
             {
-                words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), separation);
-                separation += GetWordLength(original_words, position);
+                words[position] = GetWord(phraseWithoutSpaces, GetWordLength(original_words, position), word_start);
+                word_start += GetWordLength(original_words, position);
             }
             return words;
         }
