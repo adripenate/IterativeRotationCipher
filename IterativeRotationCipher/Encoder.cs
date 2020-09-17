@@ -24,28 +24,14 @@ namespace IterativeRotationCipher
             return phrase;
         }
 
-        private static List<string> RotateWords(int number_rotations, List<string> words)
+        private static string RemoveSpaces(string phrase)
         {
-            for (int position = 0; position < words.Count; position++)
-            {
-                if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
-            }
-            return words;
+            return Regex.Replace(phrase, SPACE_PATTERN, NO_SPACE);
         }
 
-        private static int GetNumberOfWords(string[] words)
+        private static string Rotate(string phrase, int number_rotations)
         {
-            return words.Length;
-        }
-
-        private static string BuildPhrase(List<string> words)
-        {
-            return String.Join(" ", words.ToArray());
-        }
-
-        private static bool HasMoreThanOneLetter(string word)
-        {
-            return GetLength(word) > 1;
+            return phrase.Substring(GetShiftPosition(phrase, number_rotations)) + phrase.Substring(0, GetShiftPosition(phrase, number_rotations));
         }
 
         private static List<string> SeparateWords(string phrase, string phraseWithoutSpaces)
@@ -57,6 +43,25 @@ namespace IterativeRotationCipher
                 word_start += GetLength(words[position]);
             }
             return words;
+        }
+
+        private static List<string> RotateWords(int number_rotations, List<string> words)
+        {
+            for (int position = 0; position < words.Count; position++)
+            {
+                if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
+            }
+            return words;
+        }
+
+        private static string BuildPhrase(List<string> words)
+        {
+            return String.Join(SPACE, words.ToArray());
+        }
+
+        private static int GetShiftPosition(string phrase, int number_rotations)
+        {
+            return GetLength(phrase) - number_rotations;
         }
 
         private static string[] GetOriginalWords(string phrase)
@@ -74,19 +79,9 @@ namespace IterativeRotationCipher
             return phraseWithoutSpaces.Substring(separation, word_length);
         }
 
-        private static string RemoveSpaces(string phrase)
+        private static bool HasMoreThanOneLetter(string word)
         {
-            return Regex.Replace(phrase, SPACE_PATTERN, NO_SPACE);
-        }
-
-        private static string Rotate(string phrase, int number_rotations)
-        {
-            return phrase.Substring(GetShiftPosition(phrase, number_rotations)) + phrase.Substring(0, GetShiftPosition(phrase, number_rotations));
-        }
-
-        private static int GetShiftPosition(string phrase, int number_rotations)
-        {
-            return GetLength(phrase) - number_rotations;
+            return GetLength(word) > 1;
         }
     }
 }
