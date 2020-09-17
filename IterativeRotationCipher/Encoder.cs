@@ -40,11 +40,7 @@ namespace IterativeRotationCipher
 
         private static string BuildPhrase(List<string> words)
         {
-            string phrase = "";
-            for (int position = 0; position < words.Count-1; position++) 
-                phrase += words[position] + SPACE;
-            phrase += words[words.Count-1];
-            return phrase;
+            return String.Join(" ", words.ToArray());
         }
 
         private static bool HasMoreThanOneLetter(string word)
@@ -54,13 +50,13 @@ namespace IterativeRotationCipher
 
         private static List<string> SeparateWords(string phrase, string phraseWithoutSpaces)
         {
-            List<string> words_ = new List<string>(GetOriginalWords(phrase));
-            for (int position = 0, word_start = 0; position < words_.Count; position++)
+            List<string> words = new List<string>(GetOriginalWords(phrase));
+            for (int position = 0, word_start = 0; position < words.Count; position++)
             {
-                words_[position] = GetWord(phraseWithoutSpaces, GetLength(words_[position]), word_start);
-                word_start += GetLength(words_[position]);
+                words[position] = GetWord(phraseWithoutSpaces, GetLength(words[position]), word_start);
+                word_start += GetLength(words[position]);
             }
-            return words_;
+            return words;
         }
 
         private static string[] GetOriginalWords(string phrase)
