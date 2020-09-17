@@ -34,11 +34,11 @@ namespace IterativeRotationCipher
         private static string BuildPhrase(string[] words)
         {
             string phrase = "";
-            for (int position = 0; position < words.Length; position++)
+            for (int position = 0; position < words.Length-1; position++)
             {
                 phrase += words[position] + " ";
             }
-            phrase = phrase.Trim();
+            phrase += words[words.Length - 1];
             return phrase;
         }
 
