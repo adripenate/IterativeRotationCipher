@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace IterativeRotationCipher
@@ -16,16 +17,16 @@ namespace IterativeRotationCipher
             {
                 string phraseWithoutSpaces = RemoveSpaces(phrase);
                 phraseWithoutSpaces = Rotate(phraseWithoutSpaces, number_rotations);
-                string[] words = SeparateWords(phrase, phraseWithoutSpaces);
+                List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
                 words = RotateWords(number_rotations, words);
                 phrase = BuildPhrase(words);
             }
             return phrase;
         }
 
-        private static string[] RotateWords(int number_rotations, string[] words)
+        private static List<string> RotateWords(int number_rotations, List<string> words)
         {
-            for (int position = 0; position < GetNumberOfWords(words); position++)
+            for (int position = 0; position < words.Count; position++)
             {
                 if (HasMoreThanOneLetter(words[position])) words[position] = Rotate(words[position], number_rotations);
             }
@@ -37,12 +38,12 @@ namespace IterativeRotationCipher
             return words.Length;
         }
 
-        private static string BuildPhrase(string[] words)
+        private static string BuildPhrase(List<string> words)
         {
             string phrase = "";
-            for (int position = 0; position < GetNumberOfWords(words)-1; position++) 
+            for (int position = 0; position < words.Count-1; position++) 
                 phrase += words[position] + SPACE;
-            phrase += words[GetNumberOfWords(words)-1];
+            phrase += words[words.Count-1];
             return phrase;
         }
 
@@ -51,16 +52,15 @@ namespace IterativeRotationCipher
             return GetLength(word) > 1;
         }
 
-        private static string[] SeparateWords(string phrase, string phraseWithoutSpaces)
+        private static List<string> SeparateWords(string phrase, string phraseWithoutSpaces)
         {
-            string[] original_words = GetOriginalWords(phrase);
-            string[] words = new string[GetNumberOfWords(original_words)];
-            for (int position = 0, word_start = 0; position < GetNumberOfWords(original_words); position++)
+            List<string> words_ = new List<string>(GetOriginalWords(phrase));
+            for (int position = 0, word_start = 0; position < words_.Count; position++)
             {
-                words[position] = GetWord(phraseWithoutSpaces, GetLength(original_words[position]), word_start);
-                word_start += GetLength(original_words[position]);
+                words_[position] = GetWord(phraseWithoutSpaces, GetLength(words_[position]), word_start);
+                word_start += GetLength(words_[position]);
             }
-            return words;
+            return words_;
         }
 
         private static string[] GetOriginalWords(string phrase)
