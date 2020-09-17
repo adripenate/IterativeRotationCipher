@@ -19,7 +19,7 @@ namespace IterativeRotationCipher
                 phrase = "";
                 for (int position = 0; position < words.Length; position++)
                 {
-                    words[position] = Rotate(words[position], number_rotations);
+                    if (words[position].Length > 1) words[position] = Rotate(words[position], number_rotations);
                     phrase += words[position] + " ";
                 }
                 phrase = phrase.Trim();
