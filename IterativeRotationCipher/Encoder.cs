@@ -8,6 +8,7 @@ namespace IterativeRotationCipher
         private const string SPACE_PATTERN = @"\s+";
         private const string NO_SPACE = "";
         private const char SPACE_CHARACTER = ' ';
+        private const string SPACE = " ";
 
         public object Encode(string phrase, int number_rotations)
         {
@@ -39,7 +40,8 @@ namespace IterativeRotationCipher
         private static string BuildPhrase(string[] words)
         {
             string phrase = "";
-            for (int position = 0; position < GetNumberOfWords(words)-1; position++) phrase += words[position] + " ";
+            for (int position = 0; position < GetNumberOfWords(words)-1; position++) 
+                phrase += words[position] + SPACE;
             phrase += words[GetNumberOfWords(words)-1];
             return phrase;
         }
