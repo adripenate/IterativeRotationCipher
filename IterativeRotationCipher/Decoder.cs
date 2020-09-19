@@ -8,8 +8,12 @@ namespace IterativeRotationCipher
     {
         public object Decode(string phrase, int number_rotations)
         {
-            phrase = Rotate(phrase, number_rotations);
-            return Rotate(phrase, number_rotations);
+            for (int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
+            {
+                phrase = Rotate(phrase, number_rotations);
+                phrase = Rotate(phrase, number_rotations);
+            }
+            return phrase;
         }
 
         private static string Rotate(string phrase, int number_rotations)
