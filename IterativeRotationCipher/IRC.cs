@@ -10,15 +10,13 @@ namespace IterativeRotationCipher
         private const string NO_SPACE = "";
         private const char SPACE_CHARACTER = ' ';
         private const string SPACE = " ";
-        private IShifter shifter;
 
         public object Encode(string phrase, int number_rotations)
         {
-            shifter = new RightShifter();
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
-                phrase = RotatePhrase(phrase, number_rotations);
-                phrase = RotateWords(phrase, number_rotations);
+                phrase = RotatePhrase(phrase, number_rotations, new RightShifter());
+                phrase = RotateWords(phrase, number_rotations, new RightShifter());
             }
             return phrase;
         }
@@ -26,25 +24,28 @@ namespace IterativeRotationCipher
 
         public object Decode(string phrase, int number_rotations)
         {
-            shifter = new LeftShifter();
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
-                phrase = RotateWords(phrase, number_rotations);
-                phrase = RotatePhrase(phrase, number_rotations);
+                phrase = RotateWords(phrase, number_rotations, new LeftShifter());
+                phrase = RotatePhrase(phrase, number_rotations, new LeftShifter());
             }
             return phrase;
         }
 
-        private string RotatePhrase(string phrase, int number_rotations)
+        private string RotatePhrase(string phrase, int number_rotations, IShifter shifter)
         {
             string phraseWithoutSpaces = RemoveSpaces(phrase);
             phraseWithoutSpaces = shifter.Shift(phraseWithoutSpaces, number_rotations);
-            List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
-            phrase = JoinWords(words, SPACE);
-            return phrase;
+            return PutSpacesBackInPlace(phrase, phraseWithoutSpaces);
         }
 
-        private string RotateWords(string phrase, int number_rotations)
+        private string PutSpacesBackInPlace(string phrase, string phraseWithoutSpaces)
+        {
+            List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
+            return JoinWords(words, SPACE);
+        }
+
+        private string RotateWords(string phrase, int number_rotations, IShifter shifter)
         {
             List<string> words = new List<string>(GetWordsIn(phrase));
             for (int position = 0; position < words.Count; position++)
