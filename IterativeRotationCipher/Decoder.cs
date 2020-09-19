@@ -8,7 +8,12 @@ namespace IterativeRotationCipher
     {
         public object Decode(string phrase, int number_rotations)
         {
-            phrase =  phrase.Substring(number_rotations) + phrase.Substring(0, number_rotations);
+            phrase = Rotate(phrase, number_rotations);
+            return Rotate(phrase, number_rotations);
+        }
+
+        private static string Rotate(string phrase, int number_rotations)
+        {
             return phrase.Substring(number_rotations) + phrase.Substring(0, number_rotations);
         }
     }
