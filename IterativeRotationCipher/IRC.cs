@@ -65,7 +65,7 @@ namespace IterativeRotationCipher
             List<string> words = new List<string>(GetWordsIn(phrase));
             for (int position = 0; position < words.Count; position++)
             {
-                words[position] = Shifter.ShiftLeft(words[position], number_rotations);
+                if (HasMoreThanOneLetter(words[position])) words[position] = Shifter.ShiftLeft(words[position], number_rotations);
             }
 
             return JoinWords(words, SPACE);
