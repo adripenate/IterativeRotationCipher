@@ -24,11 +24,10 @@ namespace IterativeRotationCipher
 
         public string Decode(string phrase)
         {
-            var number_rotations = int.Parse(phrase.Substring(0, phrase.IndexOf(' ')));
-            phrase = phrase.Substring(phrase.IndexOf(' ') + 1);
+            var number_rotations = GetNumberOfRotations(phrase);
+            phrase = GetPhraseWithoutNumberOfRotations(phrase);
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
-
                 phrase = RotateWords(phrase, number_rotations, new LeftShifter());
                 phrase = RotatePhrase(phrase, number_rotations, new LeftShifter());
             }
@@ -67,6 +66,16 @@ namespace IterativeRotationCipher
                 word_start += GetLength(words[position]);
             }
             return words;
+        }
+
+        private static string GetPhraseWithoutNumberOfRotations(string phrase)
+        {
+            return phrase.Substring(phrase.IndexOf(' ') + 1);
+        }
+
+        private static int GetNumberOfRotations(string phrase)
+        {
+            return int.Parse(phrase.Substring(0, phrase.IndexOf(' ')));
         }
 
         private string RemoveSpaces(string phrase)
