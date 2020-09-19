@@ -12,7 +12,7 @@ namespace IRCTests
         }
 
         [Test]
-        public void ShouldIterateOneWordTwoTimes()
+        public void ShouldEncodeOneWordWithTwoRotations()
         {
             var number_rotations = 2;
             var phrase = "hello";
@@ -24,7 +24,7 @@ namespace IRCTests
         }
 
         [Test]
-        public void ShouldIterateTwoWordsOneTime()
+        public void ShouldEncodeTwoWordsWithOneRotation()
         {
             var number_rotations = 1;
             var phrase = "hello friend";
@@ -36,7 +36,7 @@ namespace IRCTests
         }
 
         [Test]
-        public void ShouldIterateWithExtraSpaces()
+        public void ShouldEncodeWithExtraSpaces()
         {
             var number_rotations = 2;
             var phrase = "hello  friend";
@@ -48,7 +48,7 @@ namespace IRCTests
         }
 
         [Test]
-        public void ShouldIterateWithExtraSpacesAtTheEnd()
+        public void ShouldEncodeWithExtraSpacesAtTheEnd()
         {
             var number_rotations = 2;
             var phrase = "hello friend ";

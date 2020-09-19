@@ -7,7 +7,7 @@ namespace IRCTests
     public class DecoderTests
     {
         [Test]
-        public void ShouldDecodeOneWordOneTime()
+        public void ShouldDecodeOneWordWithOneRotation()
         {
             var number_rotations = 1;
             var phrase = "lohel";
@@ -17,5 +17,7 @@ namespace IRCTests
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
+
+        
     }
 }
