@@ -6,11 +6,6 @@ namespace IRCTests
 {
     public class EncoderTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void ShouldEncodeOneWordWithTwoRotations()
         {
