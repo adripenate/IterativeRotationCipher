@@ -30,6 +30,18 @@ namespace IRCTests
             output.Should().BeEquivalentTo(expectedOutput);
         }
 
+        [Test]
+        public void ShouldDecodeTwoWordsWithOneRotation()
+        {
+            var number_rotations = 1;
+            var phrase = "ldhel nofrie";
+            var expectedOutput = "hello friend";
+            
+            var output = new Decoder().Decode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
+
 
     }
 }
