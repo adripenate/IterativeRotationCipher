@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace IterativeRotationCipher
 {
-    public class Encoder
+    public class IRC
     {
         private const string SPACE_PATTERN = @"\s+";
         private const string NO_SPACE = "";
@@ -20,6 +20,23 @@ namespace IterativeRotationCipher
                 List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
                 words = RotateWords(number_rotations, words);
                 phrase = BuildPhrase(words);
+            }
+            return phrase;
+        }
+
+        public object Decode(string phrase, int number_rotations)
+        {
+            for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
+            {
+                List<string> words = new List<string>(phrase.Split(' '));
+                for (int position = 0; position < words.Count; position++)
+                {
+                    words[position] = Shifter.ShiftLeft(words[position], number_rotations);
+                }
+
+                var phraseWithoutSpaces = Shifter.ShiftLeft(String.Join("", words.ToArray()), number_rotations);
+                words = SeparateWords(phrase, phraseWithoutSpaces);
+                phrase = String.Join(" ", words.ToArray());
             }
             return phrase;
         }
