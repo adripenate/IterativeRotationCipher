@@ -22,10 +22,13 @@ namespace IterativeRotationCipher
         }
 
 
-        public string Decode(string phrase, int number_rotations)
+        public string Decode(string phrase)
         {
+            var number_rotations = int.Parse(phrase.Substring(0, phrase.IndexOf(' ')));
+            phrase = phrase.Substring(phrase.IndexOf(' ') + 1);
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
+
                 phrase = RotateWords(phrase, number_rotations, new LeftShifter());
                 phrase = RotatePhrase(phrase, number_rotations, new LeftShifter());
             }

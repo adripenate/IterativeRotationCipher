@@ -9,11 +9,10 @@ namespace IRCTests
         [Test]
         public void ShouldDecodeOneWordWithOneRotation()
         {
-            var number_rotations = 1;
-            var phrase = "lohel";
+            var phrase = "1 lohel";
             var expectedOutput = "hello";
 
-            var output = new IRC().Decode(phrase, number_rotations);
+            var output = new IRC().Decode(phrase);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -21,11 +20,10 @@ namespace IRCTests
         [Test]
         public void ShouldDecodeOneWordWithTwoRotations()
         {
-            var number_rotations = 2;
-            var phrase = "llohe";
+            var phrase = "2 llohe";
             var expectedOutput = "hello";
             
-            var output = new IRC().Decode(phrase, number_rotations);
+            var output = new IRC().Decode(phrase);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -33,11 +31,10 @@ namespace IRCTests
         [Test]
         public void ShouldDecodeTwoWordsWithOneRotation()
         {
-            var number_rotations = 1;
-            var phrase = "ldhel nofrie";
+            var phrase = "1 ldhel nofrie";
             var expectedOutput = "hello friend";
             
-            var output = new IRC().Decode(phrase, number_rotations);
+            var output = new IRC().Decode(phrase);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -45,11 +42,10 @@ namespace IRCTests
         [Test]
         public void ShouldEncodeWithExtraSpaces()
         {
-            var number_rotations = 2;
-            var phrase = "lnfre  lodhie";
+            var phrase = "2 lnfre  lodhie";
             var expectedOutput = "hello  friend";
             
-            var output = new IRC().Decode(phrase, number_rotations);
+            var output = new IRC().Decode(phrase);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
