@@ -55,7 +55,7 @@ namespace IRCTests
         }
 
         [Test]
-        public void ShouldEncodeAPhraseWithTenRotations()
+        public void ShouldEncodeWithWordsLengthLessThanNumberRotations()
         {
             var number_rotations = 10;
             var phrase = "If you wish to make an apple pie from scratch, you must first invent the universe.";
