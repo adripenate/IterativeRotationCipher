@@ -17,8 +17,8 @@ namespace IterativeRotationCipher
             shifter = new RightShifter();
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
-                phrase = RotatePhraseRight(phrase, number_rotations);
-                phrase = RotateWordsRight(number_rotations, phrase);
+                phrase = RotatePhrase(phrase, number_rotations);
+                phrase = RotateWords(phrase, number_rotations);
             }
             return phrase;
         }
@@ -29,13 +29,13 @@ namespace IterativeRotationCipher
             shifter = new LeftShifter();
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
-                phrase = RotateWordsLeft(phrase, number_rotations);
-                phrase = RotatePhraseLeft(phrase, number_rotations);
+                phrase = RotateWords(phrase, number_rotations);
+                phrase = RotatePhrase(phrase, number_rotations);
             }
             return phrase;
         }
 
-        private string RotatePhraseRight(string phrase, int number_rotations)
+        private string RotatePhrase(string phrase, int number_rotations)
         {
             string phraseWithoutSpaces = RemoveSpaces(phrase);
             phraseWithoutSpaces = shifter.Shift(phraseWithoutSpaces, number_rotations);
@@ -44,33 +44,13 @@ namespace IterativeRotationCipher
             return phrase;
         }
 
-        private string RotatePhraseLeft(string phrase, int number_rotations)
-        {
-            var phraseWithoutSpaces = RemoveSpaces(phrase);
-            phraseWithoutSpaces = shifter.Shift(phraseWithoutSpaces, number_rotations);
-            List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
-            phrase = JoinWords(words, SPACE);
-            return phrase;
-        }
-
-        private string RotateWordsRight(int number_rotations, string phrase)
+        private string RotateWords(string phrase, int number_rotations)
         {
             List<string> words = new List<string>(GetWordsIn(phrase));
             for (int position = 0; position < words.Count; position++)
             {
                 if (HasMoreThanOneLetter(words[position])) words[position] = shifter.Shift(words[position], number_rotations);
             }
-            return JoinWords(words, SPACE);
-        }
-
-        private string RotateWordsLeft(string phrase, int number_rotations)
-        {
-            List<string> words = new List<string>(GetWordsIn(phrase));
-            for (int position = 0; position < words.Count; position++)
-            {
-                if (HasMoreThanOneLetter(words[position])) words[position] = shifter.Shift(words[position], number_rotations);
-            }
-
             return JoinWords(words, SPACE);
         }
 
