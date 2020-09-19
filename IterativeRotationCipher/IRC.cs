@@ -19,7 +19,7 @@ namespace IterativeRotationCipher
                 phraseWithoutSpaces = Shifter.ShiftRight(phraseWithoutSpaces, number_rotations);
                 List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
                 words = RotateWords(number_rotations, words);
-                phrase = BuildPhrase(words);
+                phrase = JoinWords(words, SPACE);
             }
             return phrase;
         }
@@ -29,11 +29,10 @@ namespace IterativeRotationCipher
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
                 phrase = RotateWordsLeft(phrase, number_rotations);
-
                 var phraseWithoutSpaces = RemoveSpaces(phrase);
                 phraseWithoutSpaces = Shifter.ShiftLeft(phraseWithoutSpaces, number_rotations);
                 List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
-                phrase = String.Join(" ", words.ToArray());
+                phrase = JoinWords(words, " ");
             }
             return phrase;
         }
@@ -46,7 +45,7 @@ namespace IterativeRotationCipher
                 words[position] = Shifter.ShiftLeft(words[position], number_rotations);
             }
 
-            return String.Join(" ", words.ToArray());
+            return JoinWords(words, " ");
         }
 
         private static string RemoveSpaces(string phrase)
@@ -74,9 +73,9 @@ namespace IterativeRotationCipher
             return words;
         }
 
-        private static string BuildPhrase(List<string> words)
+        private static string JoinWords(List<string> words, string delimiter)
         {
-            return String.Join(SPACE, words.ToArray());
+            return String.Join(delimiter, words.ToArray());
         }
 
         private static string[] GetOriginalWords(string phrase)
