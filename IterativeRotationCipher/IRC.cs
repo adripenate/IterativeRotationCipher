@@ -11,18 +11,18 @@ namespace IterativeRotationCipher
         private const char SPACE_CHARACTER = ' ';
         private const string SPACE = " ";
 
-        public object Encode(string phrase, int number_rotations)
+        public string Encode(string phrase, int number_rotations)
         {
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
                 phrase = RotatePhrase(phrase, number_rotations, new RightShifter());
                 phrase = RotateWords(phrase, number_rotations, new RightShifter());
             }
-            return phrase;
+            return number_rotations + " " + phrase;
         }
 
 
-        public object Decode(string phrase, int number_rotations)
+        public string Decode(string phrase, int number_rotations)
         {
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
