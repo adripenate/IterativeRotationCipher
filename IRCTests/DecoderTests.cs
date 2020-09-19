@@ -42,6 +42,18 @@ namespace IRCTests
             output.Should().BeEquivalentTo(expectedOutput);
         }
 
+        [Test]
+        public void ShouldEncodeWithExtraSpaces()
+        {
+            var number_rotations = 2;
+            var phrase = "lnfre  lodhie";
+            var expectedOutput = "hello  friend";
+            
+            var output = new IRC().Decode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
+
 
     }
 }
