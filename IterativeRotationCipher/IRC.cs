@@ -28,17 +28,25 @@ namespace IterativeRotationCipher
         {
             for (int actual_rotation = 0; actual_rotation < number_rotations; actual_rotation++)
             {
-                List<string> words = new List<string>(phrase.Split(' '));
-                for (int position = 0; position < words.Count; position++)
-                {
-                    words[position] = Shifter.ShiftLeft(words[position], number_rotations);
-                }
+                phrase = RotateWordsLeft(phrase, number_rotations);
 
-                var phraseWithoutSpaces = Shifter.ShiftLeft(String.Join("", words.ToArray()), number_rotations);
-                words = SeparateWords(phrase, phraseWithoutSpaces);
+                var phraseWithoutSpaces = RemoveSpaces(phrase);
+                phraseWithoutSpaces = Shifter.ShiftLeft(phraseWithoutSpaces, number_rotations);
+                List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
                 phrase = String.Join(" ", words.ToArray());
             }
             return phrase;
+        }
+
+        private static string RotateWordsLeft(string phrase, int number_rotations)
+        {
+            List<string> words = new List<string>(phrase.Split(' '));
+            for (int position = 0; position < words.Count; position++)
+            {
+                words[position] = Shifter.ShiftLeft(words[position], number_rotations);
+            }
+
+            return String.Join(" ", words.ToArray());
         }
 
         private static string RemoveSpaces(string phrase)
