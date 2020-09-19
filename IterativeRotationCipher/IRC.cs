@@ -48,6 +48,7 @@ namespace IterativeRotationCipher
             {
                 if (HasMoreThanOneLetter(words[position])) words[position] = shifter.Shift(words[position], number_rotations);
             }
+
             return JoinWords(words, SPACE);
         }
 

@@ -59,7 +59,7 @@ namespace IRCTests
         {
             var number_rotations = 10;
             var phrase = "If you wish to make an apple pie from scratch, you must first invent the universe.";
-            var expectedOutput = "10 hu fmo a,ys vi utie mr snehn rni tvte.ysushou teI fwea pmapi apfrok rei tnocsclet";
+            var expectedOutput = "10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet";
 
             var output = IRC.Encode(phrase, number_rotations);
 
