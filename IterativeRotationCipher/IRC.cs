@@ -11,7 +11,7 @@ namespace IterativeRotationCipher
         private const char SPACE_CHARACTER = ' ';
         private const string SPACE = " ";
 
-        public string Encode(string phrase, int number_rotations)
+        public static string Encode(string phrase, int number_rotations)
         {
             for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
@@ -22,7 +22,7 @@ namespace IterativeRotationCipher
         }
 
 
-        public string Decode(string phrase)
+        public static string Decode(string phrase)
         {
             var number_rotations = GetNumberOfRotations(phrase);
             phrase = GetPhraseWithoutNumberOfRotations(phrase);
@@ -34,14 +34,14 @@ namespace IterativeRotationCipher
             return phrase;
         }
 
-        private string RotatePhrase(string phrase, int number_rotations, IShifter shifter)
+        private static string RotatePhrase(string phrase, int number_rotations, IShifter shifter)
         {
             string phraseWithoutSpaces = RemoveSpaces(phrase);
             phraseWithoutSpaces = shifter.Shift(phraseWithoutSpaces, number_rotations);
             return PutSpacesBackInPlace(phrase, phraseWithoutSpaces);
         }
 
-        private string RotateWords(string phrase, int number_rotations, IShifter shifter)
+        private static string RotateWords(string phrase, int number_rotations, IShifter shifter)
         {
             List<string> words = GetListOfWordsIn(phrase);
             for (int position = 0; position < NumberOf(words); position++)
@@ -51,13 +51,13 @@ namespace IterativeRotationCipher
             return JoinWords(words, SPACE);
         }
 
-        private string PutSpacesBackInPlace(string phrase, string phraseWithoutSpaces)
+        private static string PutSpacesBackInPlace(string phrase, string phraseWithoutSpaces)
         {
             List<string> words = SeparateWords(phrase, phraseWithoutSpaces);
             return JoinWords(words, SPACE);
         }
 
-        private List<string> SeparateWords(string phrase, string phraseWithoutSpaces)
+        private static List<string> SeparateWords(string phrase, string phraseWithoutSpaces)
         {
             List<string> words = GetListOfWordsIn(phrase);
             for (int position = 0, word_start = 0; position < NumberOf(words); position++)
@@ -78,32 +78,32 @@ namespace IterativeRotationCipher
             return int.Parse(phrase.Substring(0, phrase.IndexOf(' ')));
         }
 
-        private string RemoveSpaces(string phrase)
+        private static string RemoveSpaces(string phrase)
         {
             return Regex.Replace(phrase, SPACE_PATTERN, NO_SPACE);
         }
 
-        private string JoinWords(List<string> words, string separator)
+        private static string JoinWords(List<string> words, string separator)
         {
             return String.Join(separator, words.ToArray());
         }
 
-        private string[] GetWordsIn(string phrase)
+        private static string[] GetWordsIn(string phrase)
         {
             return phrase.Split(SPACE_CHARACTER);
         }
 
-        private int GetLength(string word)
+        private static int GetLength(string word)
         {
             return word.Length;
         }
 
-        private string GetWord(string phraseWithoutSpaces, int word_length, int separation)
+        private static string GetWord(string phraseWithoutSpaces, int word_length, int separation)
         {
             return phraseWithoutSpaces.Substring(separation, word_length);
         }
 
-        private bool HasMoreThanOneLetter(string word)
+        private static bool HasMoreThanOneLetter(string word)
         {
             return GetLength(word) > 1;
         }
@@ -113,7 +113,7 @@ namespace IterativeRotationCipher
             return words.Count;
         }
 
-        private List<string> GetListOfWordsIn(string phrase)
+        private static List<string> GetListOfWordsIn(string phrase)
         {
             return new List<string>(GetWordsIn(phrase));
         }

@@ -13,7 +13,7 @@ namespace IRCTests
             var phrase = "hello";
             var expectedOutput = "2 llohe";
 
-            var output = new IRC().Encode(phrase, number_rotations);
+            var output = IRC.Encode(phrase, number_rotations);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -25,7 +25,7 @@ namespace IRCTests
             var phrase = "hello friend";
             var expectedOutput = "1 ldhel nofrie";
 
-            var output = new IRC().Encode(phrase, number_rotations);
+            var output = IRC.Encode(phrase, number_rotations);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -37,7 +37,7 @@ namespace IRCTests
             var phrase = "hello  friend";
             var expectedOutput = "2 lnfre  lodhie";
 
-            var output = new IRC().Encode(phrase, number_rotations);
+            var output = IRC.Encode(phrase, number_rotations);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
@@ -49,7 +49,7 @@ namespace IRCTests
             var phrase = "hello friend ";
             var expectedOutput = "2 lnfre lodhie ";
 
-            var output = new IRC().Encode(phrase, number_rotations);
+            var output = IRC.Encode(phrase, number_rotations);
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
