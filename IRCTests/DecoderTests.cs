@@ -18,6 +18,18 @@ namespace IRCTests
             output.Should().BeEquivalentTo(expectedOutput);
         }
 
-        
+        [Test]
+        public void ShouldDecodeOneWordWithTwoRotations()
+        {
+            var number_rotations = 2;
+            var phrase = "llohe";
+            var expectedOutput = "hello";
+            
+            var output = new Decoder().Decode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
+
+
     }
 }
