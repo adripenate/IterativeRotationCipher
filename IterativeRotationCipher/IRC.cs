@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace IterativeRotationCipher
 {
     public class IRC
     {
-        private const string SPACE_PATTERN = @"\s+";
         private const string NO_SPACE = "";
         private const char SPACE_CHARACTER = ' ';
         private const string SPACE = " ";
 
         public static string Encode(string phrase, int number_rotations)
         {
-            for(int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
+            
+            for (int actual_rotation = 0; actual_rotation<number_rotations; actual_rotation++)
             {
                 phrase = RotatePhrase(phrase, number_rotations, new RightShifter());
                 phrase = RotateWords(phrase, number_rotations, new RightShifter());
@@ -80,7 +79,7 @@ namespace IterativeRotationCipher
 
         private static string RemoveSpaces(string phrase)
         {
-            return Regex.Replace(phrase, SPACE_PATTERN, NO_SPACE);
+            return phrase.Replace(SPACE, NO_SPACE);
         }
 
         private static string JoinWords(List<string> words, string separator)

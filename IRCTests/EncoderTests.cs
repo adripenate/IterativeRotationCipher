@@ -65,5 +65,17 @@ namespace IRCTests
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
+
+        [Test]
+        public void ShouldEncodeWithNewLines()
+        {
+            var number_rotations = 29;
+            var phrase = "I avoid that bleak first hour of the working day during which my still sluggish senses and body make every chore a penance.\nI find that in arriving later, the work which I do perform is of a much higher quality.";
+            var expectedOutput = "29 a r.lht niou gwryd aoshg gIsi mk lei adwhfci isd seensn rdohy mo kleie oltbyhes a\naneu p.n rndr tehh irnne yifav t eo,raclhtc frpw IIti im gwkaidhv aicufh ima doea eruhi y io qshhcoa kr ef l btah gtrrse otnvugrt";
+
+            var output = IRC.Encode(phrase, number_rotations);
+
+            output.Should().BeEquivalentTo(expectedOutput);
+        }
     }
 }
