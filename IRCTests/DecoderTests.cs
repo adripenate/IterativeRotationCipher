@@ -49,17 +49,5 @@ namespace IRCTests
 
             output.Should().BeEquivalentTo(expectedOutput);
         }
-
-        [Test]
-        public void ShouldDecodeWithWordsLengthLessThanNumberRotations()
-        {
-            var number_rotations = 10;
-            var phrase = "10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet";
-            var expectedOutput = "If you wish to make an apple pie from scratch, you must first invent the universe.";
-
-            var output = IRC.Encode(phrase, number_rotations);
-
-            output.Should().BeEquivalentTo(expectedOutput);
-        }
     }
 }
