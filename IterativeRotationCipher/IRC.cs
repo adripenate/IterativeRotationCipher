@@ -17,7 +17,7 @@ namespace IterativeRotationCipher
                 phrase = RotatePhrase(phrase, number_rotations, new RightShifter());
                 phrase = RotateWords(phrase, number_rotations, new RightShifter());
             }
-            return number_rotations + " " + phrase;
+            return number_rotations + SPACE + phrase;
         }
 
 
@@ -69,12 +69,12 @@ namespace IterativeRotationCipher
 
         private static string GetPhraseWithoutNumberOfRotations(string phrase)
         {
-            return phrase.Substring(phrase.IndexOf(' ') + 1);
+            return phrase.Substring(phrase.IndexOf(SPACE_CHARACTER) + 1);
         }
 
         private static int GetNumberOfRotations(string phrase)
         {
-            return int.Parse(phrase.Substring(0, phrase.IndexOf(' ')));
+            return int.Parse(phrase.Substring(0, phrase.IndexOf(SPACE_CHARACTER)));
         }
 
         private static string RemoveSpaces(string phrase)
